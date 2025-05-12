@@ -88,6 +88,9 @@
     <profile>
       <!-- required, used in .github/workflows/sonatype-publish.yml -->
       <id>sonatypeDeploy</id>
+      <properties>
+        <activateCommonDeploy>true</activateCommonDeploy>
+      </properties>
       <build>
         <plugins>
           <plugin>
@@ -101,6 +104,38 @@
               <waitUntil>published</waitUntil>
             </configuration>
           </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>maven-publish-reposilite</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <activateCommonDeploy>true</activateCommonDeploy>
+      </properties>
+      <distributionManagement>
+        <repository>
+          <id>klibio-maven-releases</id>
+          <url>${env.REPOSILITE_URL}/releases/</url>
+        </repository>
+        <snapshotRepository>
+          <uniqueVersion>true</uniqueVersion>
+          <id>klibio-maven-snapshots</id>
+          <url>${env.REPOSILITE_URL}/snapshots/</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+    <profile>
+      <id>general-deploy</id>
+      <activation>
+        <property>
+          <name>activateCommonDeploy</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
@@ -185,23 +220,6 @@
           </plugin>
         </plugins>
       </build>
-    </profile>
-    <profile>
-      <id>maven-publish-reposilite</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <distributionManagement>
-        <repository>
-          <id>klibio-maven-releases</id>
-          <url>${env.REPOSILITE_URL}/releases/</url>
-        </repository>
-        <snapshotRepository>
-          <uniqueVersion>true</uniqueVersion>
-          <id>klibio-maven-snapshots</id>
-          <url>${env.REPOSILITE_URL}/snapshots/</url>
-        </snapshotRepository>
-      </distributionManagement>
     </profile>
   </profiles>
 
