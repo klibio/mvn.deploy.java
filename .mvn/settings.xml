@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <servers>
+        <server>
+            <id>github.com</id>
+            <username>${env.github_username}</username>
+            <password>${env.github_token}</password>
+        </server>
+        <server>
+            <id>klibio-maven-releases</id>
+            <username>${env.REPOSILITE_USER_RELEASE}</username>
+            <password>${env.REPOSILITE_TOKEN_RELEASE}</password>
+        </server>
+        <server>
+            <id>klibio-maven-snapshots</id>
+            <username>${env.REPOSILITE_USER_SNAPSHOT}</username>
+            <password>${env.REPOSILITE_TOKEN_SNAPSHOT}</password>
+        </server>
+        <server>
+            <id>central</id>
+            <username>${env.CENTRAL_USER}</username>
+            <password>${env.CENTRAL_TOKEN}</password>
+        </server>
+    </servers>
+
+</settings>
