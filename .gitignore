@@ -1,8 +1,10 @@
 .DS_Store
 .metadata/
+.vscode
 bin/
 bin_test/
 cache/
 generated/
 target/
 WIP.md
+mvn.deploy.java-*

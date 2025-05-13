@@ -1,6 +1,6 @@
 # WIP
 
-```bash
+```sh
 export 'MAVEN=/Users/peterkir/eval/apache-maven-3.9.9'
 export 'PATH=$MAVEN/bin:$PATH'
 
@@ -26,16 +26,23 @@ export CENTRAL_TOKEN=<token-here>
 java -jar target/mvn.deploy.java-0.0.1-SNAPSHOT.jar
 
 # build and deploy to reposilite.klib.io
-./mvnw clean deploy > _log$(date +'%Y.%m.%d-%H.%M.%S')_out.log
+./mvnw clean deploy > _log/$(date +'%Y.%m.%d-%H.%M.%S')_out.log
 
 # launching gpg-agent
 gpg-agent
 # store gpg password
 echo "test" | gpg --clearsign
 # publish to maven central
-./mvnw clean deploy -P maven-publish-central > _log/$(date +'%Y.%m.%d-%H.%M.%S')_out.log
+./mvnw clean deploy -P sonatypeDeploy > _log/$(date +'%Y.%m.%d-%H.%M.%S')_out.log
 
+```
 
+```sh
+# 
+./mvnw org.apache.maven.plugins:maven-dependency-plugin:3.8.1:copy \
+-Dartifact=io.klib.eval:mvn.deploy.java:LATEST \
+-DoutputDirectory=./ \
+-Dproject.basedir=./
 
 ```
 
