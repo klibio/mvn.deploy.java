@@ -8,10 +8,26 @@ import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
 /**
- * Hello world!
+ * Evaluation of Maven Release repositories
+ * 
+ * Maven Central / Sonatype
+ * Reposilite / klib.io
  *
  */
 public class App {
+	
+	/**
+	 * avoid build warnings
+	 */
+	public App() {
+		// avoid build warnings
+	}
+	
+	/**
+	 * Main to launch the application
+	 * 
+	 * @param args are not used for the main method
+	 */
 	public static void main(String[] args) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
 		String timestamp = LocalDateTime.now().format(formatter);

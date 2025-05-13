@@ -5,7 +5,7 @@
 
   <groupId>io.klib.eval</groupId>
   <artifactId>mvn.deploy.java</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2-SNAPSHOTS</version>
   <packaging>jar</packaging>
 
   <name>mvn.deploy.java</name>
@@ -14,8 +14,12 @@
 
   <licenses>
     <license>
-      <name>MIT License</name>
-      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <name>Apache-2.0</name>
+      <url>https://opensource.org/licenses/Apache-2.0</url>
+    </license>
+    <license>
+      <name>EPL-2.0</name>
+      <url>https://opensource.org/licenses/EPL-2.0</url>
     </license>
   </licenses>
 
@@ -87,10 +91,7 @@
   <profiles>
     <profile>
       <!-- required, used in .github/workflows/sonatype-publish.yml -->
-      <id>sonatypeDeploy</id>
-      <properties>
-        <activateCommonDeploy>true</activateCommonDeploy>
-      </properties>
+      <id>deploySonatype</id>
       <build>
         <plugins>
           <plugin>
@@ -154,13 +155,10 @@
       </build>
     </profile>
     <profile>
-      <id>maven-publish-reposilite</id>
+      <id>deployReposilite</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-      <properties>
-        <activateCommonDeploy>true</activateCommonDeploy>
-      </properties>
       <distributionManagement>
         <repository>
           <id>klibio-maven-releases</id>
@@ -172,14 +170,6 @@
           <url>${env.REPOSILITE_URL}/snapshots/</url>
         </snapshotRepository>
       </distributionManagement>
-    </profile>
-    <profile>
-      <id>general-deploy</id>
-      <activation>
-        <property>
-          <name>activateCommonDeploy</name>
-        </property>
-      </activation>
       <build>
         <plugins>
           <plugin>
@@ -271,15 +261,6 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.sonatype.central</groupId>
-        <artifactId>central-publishing-maven-plugin</artifactId>
-        <version>${central-publishing-maven-plugin-version}</version>
-        <extensions>true</extensions>
-        <configuration>
-          <publishingServerId>central</publishingServerId>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>

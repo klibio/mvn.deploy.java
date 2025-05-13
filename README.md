@@ -25,15 +25,18 @@ export CENTRAL_TOKEN=<token-here>
 # execute local
 java -jar target/mvn.deploy.java-0.0.1-SNAPSHOT.jar
 
-# build and deploy to reposilite.klib.io
+# build and deploy to (default) reposilite.klib.io
 ./mvnw clean deploy > _log/$(date +'%Y.%m.%d-%H.%M.%S')_out.log
+
+# explicit publish to reposilite (snapshot/release depending on version)
+./mvnw clean deploy -P deployReposilite > _log/$(date +'%Y.%m.%d-%H.%M.%S')_out.log
 
 # launching gpg-agent
 gpg-agent
 # store gpg password
 echo "test" | gpg --clearsign
-# publish to maven central
-./mvnw clean deploy -P sonatypeDeploy > _log/$(date +'%Y.%m.%d-%H.%M.%S')_out.log
+# publish to maven central (snapshot/release depending on version)
+./mvnw clean deploy -P deploySonatype > _log/$(date +'%Y.%m.%d-%H.%M.%S')_out.log
 
 ```
 
