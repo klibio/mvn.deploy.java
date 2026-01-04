@@ -23,7 +23,7 @@ export CENTRAL_TOKEN=<token-here>
 # build local
 ./mvnw clean verify
 # execute local
-java -jar target/mvn.deploy.java-0.0.1-SNAPSHOT.jar
+java -jar target/mvn.deploy.java-*.jar
 
 # build and deploy to (default) reposilite.klib.io
 ./mvnw clean deploy > _log/$(date +'%Y.%m.%d-%H.%M.%S')_out.log
@@ -32,6 +32,7 @@ java -jar target/mvn.deploy.java-0.0.1-SNAPSHOT.jar
 ./mvnw clean deploy -P deployReposilite > _log/$(date +'%Y.%m.%d-%H.%M.%S')_out.log
 
 # launching gpg-agent
+export PATH=/opt/homebrew/bin:$PATH
 gpg-agent
 # store gpg password
 echo "test" | gpg --clearsign

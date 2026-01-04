@@ -5,7 +5,7 @@
 
   <groupId>io.klib.eval</groupId>
   <artifactId>mvn.deploy.java</artifactId>
-  <version>0.0.2-SNAPSHOTS</version>
+  <version>0.1.0-SNAPSHOTS</version>
   <packaging>jar</packaging>
 
   <name>mvn.deploy.java</name>
@@ -54,6 +54,7 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.release>${java.version}</maven.compiler.release>
     <junit.version>5.10.2</junit.version>
+    <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
 
     <central-publishing-maven-plugin-version>0.7.0</central-publishing-maven-plugin-version>
     <exec-maven-plugin-version>3.5.0</exec-maven-plugin-version>
@@ -272,6 +273,9 @@
               <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
               <addBuildEnvironmentEntries>true</addBuildEnvironmentEntries>
             </manifest>
+            <manifestEntries>
+              <Build-Time>${maven.build.timestamp}</Build-Time>
+            </manifestEntries>
           </archive>
         </configuration>
       </plugin>
